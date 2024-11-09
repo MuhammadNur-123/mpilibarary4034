@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="hero">
+<div class="container mt-4">
+    <div class="card-header">
+        <i class="fas fa-table me-1"></i>
+    <h1>Book Categories</h1>
+    </div>
+    {% if user.user_type == 'LIB' or user.user_type == 'ADM' %}
+    <a href="{% url 'category_create' %}" class="btn btn-primary mb-3">Create New Category</a>
+    {% endif %}
+    <table id="bookTable" class="table table-striped table-bordered" style="width:100%">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+                {% if user.user_type == 'LIB' or user.user_type == 'ADM' %}
+                <th>Actions</th>
+                {% endif %}
+            </tr>
+        </thead>
+        <tbody class="t-bg">
+            {% for category in categories %}
+            <tr>
+                <td>{{ category.name }}</td>
+                <td>{{ category.description }}</td>
+                {% if user.user_type == 'LIB' or user.user_type == 'ADM' %}
+                <td>
+                    <a href="{% url 'category_update' category.pk %}" class="btn btn-warning btn-sm">Edit</a>
+                    <a href="{% url 'category_delete' category.pk %}" class="btn btn-danger btn-sm">Delete</a>
+                </td>
+                {% endif %}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+</div>
+<style>
+    .card-header {
+   
+    font-weight: bold;
+}
+
+.btn-sm {
+    padding: 5px 10px;
+}
+.t-bg{
+    background-color: rgba(127, 255, 212, 0.618);
+}
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+       /* Hero Section */
+.hero {
+    height: 100vh;
+    display: flex;
+  
+    background-image: url('/static/assets/img/dashboard-2li.jpg');
+    background-size: cover;
+}
+
+.hero .content h1 {
+    font-size: 4rem;
+    margin-bottom: 20px;
+    color: black;
+}
+
+.hero .content p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    max-width: 700px;
+}
+h1{ 
+    color: black;
+}
+</style>
+{% endblock %}

@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="hero">
+<div class="container-fluid px-4">
+    <h1 class="mt-4">Authors</h1>
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item"><a href="{% url 'dashboard'%}">Dashboard</a></li>
+        <li class="breadcrumb-item active">Authors</li>
+    </ol>
+    {% if user.user_type == 'LIB' or user.user_type == 'ADM' %}
+    <a href="{% url 'add_author' %}" class="btn btn-primary mb-3">Add New Author</a>
+    {% endif %}
+    <div class="card mb-4">
+        <div class="card-header">
+            <i class="fas fa-table me-1"></i>
+            Author List
+        </div>
+        <div class="card-body">
+            <table id="datatablesSimple">
+                <thead>
+                    <tr>
+                        <th>Image</th>
+                        <th>Name</th>
+                        <th>Country</th>
+                        <th>Date of Birth</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for author in authors %}
+                    <tr>
+                        <td>
+                            {% if author.image %}
+                                <img src="{{ author.image.url }}" alt="Author Image" width="50" height="50">
+                            {% else %}
+                                No Image
+                            {% endif %}
+                        </td>
+                        <td>{{ author.name }}</td>
+                        <td>{{ author.get_country_display }}</td>
+                        <td>{{ author.date_of_birth }}</td>
+                        <td>
+                            <a href="{% url 'author_detail' author.pk %}" class="btn btn-info btn-sm">View</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</div>
+
+<style>
+    /* Hero Section */
+.hero {
+    height: 100vh;
+    display: flex;
+   
+    background-image: url('/static/assets/img/dashboard-2li.jpg');
+    background-size: cover;
+}
+
+.hero .content h1 {
+    font-size: 4rem;
+    margin-bottom: 20px;
+    color: black;
+}
+
+.hero .content p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    max-width: 700px;
+}
+h1{ 
+    color: black;
+}
+</style>
+{% endblock content %}

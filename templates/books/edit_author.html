@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container-fluid px-4">
+    <h1 class="mt-4">Edit Author</h1>
+    <div class="card mb-4">
+        <div class="card-header">
+            <i class="fas fa-edit me-1"></i>
+            Edit Author: {{ author.name }}
+        </div>
+        <div class="card-body">
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.non_field_errors }}
+                <div class="mb-3">
+                    <label for="id_name" class="form-label">Name</label>
+                    {{ form.name }}
+                </div>
+                <div class="mb-3">
+                    <label for="id_bio" class="form-label">Bio</label>
+                    {{ form.bio }}
+                </div>
+                <div class="mb-3">
+                    <label for="id_date_of_birth" class="form-label">Date of Birth</label>
+                    {{ form.date_of_birth }}
+                </div>
+                <div class="mb-3">
+                    <label for="id_country" class="form-label">Country</label>
+                    {{ form.country }}
+                </div>
+                <div class="mb-3">
+                    <label for="id_image" class="form-label">Author Image</label>
+                    {% if author.image %}
+                        <img src="{{ author.image.url }}" alt="{{ author.name }}" class="author-img mb-3">
+                    {% endif %}
+                    {{ form.image }}
+                </div>
+                <button type="submit" class="btn btn-primary">Update Author</button>
+                <a href="{% url 'author_list' %}" class="btn btn-secondary">Cancel</a>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock content %}

@@ -1,0 +1,110 @@
+
+
+
+
+
+#up {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007bff; /* Bootstrap Primary color */
+    color: #fff;
+    text-align: center;
+    border-radius: 5px;
+    text-decoration: none; /* Removes underline */
+  }
+  
+  #up:hover {
+    background-color: #0056b3; /* Darker shade for hover effect */
+  }
+
+
+
+  /* General reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    background: rgb(226, 216, 216);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.navbar h1 {
+    font-size: 2rem;
+    color: #3498db;
+}
+
+.navbar ul {
+    list-style: none;
+}
+
+.navbar ul li {
+    display: inline-block;
+    margin-left: 15px;
+}
+
+.navbar ul li a {
+    text-decoration: none;
+    color: #3498db;
+    font-size: 1.2rem;
+}
+
+.navbar ul li a:hover {
+    color: #2980b9;
+}
+
+.content h2 {
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+    color: #2c3e50;
+}
+
+.content p {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    color: #34495e;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #2980b9;
+}
+
+#message {
+    font-size: 1.4rem;
+    color: #2ecc71;
+    margin-top: 20px;
+}
+

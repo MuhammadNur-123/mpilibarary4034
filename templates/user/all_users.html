@@ -1,0 +1,91 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+<main>
+<div style="padding: 0%;"> 
+<div class="">
+    <h1>Members</h1>
+    <div style="margin-left: 1100px;">
+        <a href="{% url 'create_user' %}" class="btn btn-primary" id="up"> Create New User</a>
+    </div>
+    <br>
+    <form method="GET" action="">
+        <div class="input-group mb-3">
+            <input type="text" name="q" class="form-control" placeholder="Search users..." value="{{ search_query|default:'' }}">
+            <button class="btn btn-outline-secondary" type="submit">Search</button>
+        </div>
+    </form>
+    <table id="customers" border="1"">
+        <thead>
+            <tr style="background-color: rgb(74, 200, 200); text-align: center;">
+                <th>Image</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Roll</th>
+                <th>Department</th>
+                <th>Session</th>
+                <th>Phone Number</th>
+                <th>Address</th>
+                <th>Membership Number</th>
+                <th>User Type</th>
+                <th>Active</th>
+                <th>Admin</th>
+               
+                
+                <th colspan="4" id="mid">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+            <tr> 
+                <td>
+                {% if user.image %}
+                    <img src="{{ user.image.url }}" alt="Profile Image" width="50" height="50">
+                {% else %}
+                    No Image
+                {% endif %}
+               </td>
+               <td>{{ user.name }}</td>
+               <td>{{ user.email }}</td>
+                <td>{{ user.roll }}</td>
+                <td>{{ user.department }}</td>
+                <td>{{ user.session }}</td>
+                <td>{{ user.phone_number }}</td>
+                <td>{{ user.address }}</td>
+                <td>{{ user.membership_number }}</td>
+                <td>{{ user.get_user_type_display }}</td>
+                {% comment %} <td>{{ user.is_active|yesno:"Yes,No" }}</td> {% endcomment %}
+                <td>
+                    <form method="POST" action="{% url 'update_user_status' user.id %}" style="display:inline;">
+                        {% csrf_token %}
+                        <input type="checkbox" name="is_active" {% if user.is_active %}checked{% endif %} onchange="this.form.submit();">
+                    </form>
+                </td>
+
+                <td>{{ user.is_admin|yesno:"Yes,No" }}</td>
+               
+                <td>
+                    <!-- Update URL with user.id -->
+                    <a href="{% url 'update_user' user.id %}" class="btn btn-primary" id="up">Update</a>
+                </td>
+                <td>
+                    <!-- Delete URL with user.id -->
+                    <form method="post" action="{% url 'delete_user' user.id %}">
+                        {% csrf_token %}
+                        <button type="submit" class="box" >Delete</button>
+                    </form>
+                   
+                </td>
+                
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <br><br>
+    <!-- Link to the registration page -->
+    
+</div>
+</div>   
+</main>
+{% endblock content %}

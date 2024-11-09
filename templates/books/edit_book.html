@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container-fluid px-4">
+    <h1 class="mt-4">Edit Book</h1>
+    <ol class="breadcrumb mb-4">
+       
+        <li class="breadcrumb-item"><a href="{% url 'book_list' %}">Books</a></li>
+        <li class="breadcrumb-item active">Edit Book</li>
+    </ol>
+    <div class="card mb-4">
+        <div class="card-header">
+            <i class="fas fa-edit me-1"></i>
+            Edit Book: {{ book.title }}
+        </div>
+        <div class="card-body">
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.non_field_errors }}
+                <div class="mb-3">
+                    <label for="id_title" class="form-label">Title</label>
+                    {{ form.title }}
+                </div>
+                <div class="mb-3">
+                    <label for="id_author" class="form-label">Author</label>
+                    {{ form.author }}
+                </div>
+                <div class="mb-3">
+                    <label for="id_category" class="form-label">Category</label>
+                    {{ form.category }}
+                </div>
+                <div class="mb-3">
+                    <label for="id_isbn" class="form-label">ISBN</label>
+                    {{ form.isbn }}
+                </div>
+                <div class="mb-3">
+                    <label for="id_published_date" class="form-label">Published Date</label>
+                    {{ form.published_date }}
+                </div>
+                <div class="mb-3">
+                    <label for="id_language" class="form-label">Language</label>
+                    {{ form.language }}
+                </div>
+                <div class="mb-3">
+                    <label for="id_available_copies" class="form-label">Available Copies</label>
+                    {{ form.available_copies }}
+                </div>
+                <div class="mb-3">
+                    <label for="id_image" class="form-label">Book Image</label>
+                    {% if book.image %}
+                        <img src="{{ book.image.url }}" alt="{{ book.title }}" class="book-img mb-3">
+                    {% endif %}
+                    {{ form.image }}
+                </div>
+                <div class="mb-3">
+                    <label for="id_description" class="form-label">Description</label>
+                    {{ form.description }}
+                </div>
+                <button type="submit" class="btn btn-primary">Update Book</button>
+                <a href="{% url 'book_list' %}" class="btn btn-secondary">Cancel</a>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock content %}

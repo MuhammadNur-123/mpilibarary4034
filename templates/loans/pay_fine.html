@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <h2>Fine Payment for {{ loan.book.title }}</h2>
+    <p>Member: {{ loan.member.name }}</p>
+    <p>Fine Amount: ${{ loan.fine }}</p>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Pay Fine</button>
+    </form>
+</div>
+{% endblock %}

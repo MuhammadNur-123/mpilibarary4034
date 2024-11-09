@@ -1,0 +1,24 @@
+<!-- update_user.html -->
+{% extends "base.html" %}
+{% block content %}
+<main>
+    <div class="container-fluid px-4">
+        <div class="card mb-4 mt-5">
+            <div class="card-body">
+                <h2 style="text-align: center;">Update User Information</h2>
+
+                <form method="post" action="{% url 'update_user' user.id %}" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <!-- Render all fields with error handling -->
+                    {{ form.as_p }}
+
+                    <button type="submit" class="btn btn-primary">Update User</button>
+                    {% if user.user_type == 'LIB' or user.user_type == 'ADM' %}
+                    <a href="{% url 'all_users' %}" class="btn btn-secondary mt-3">Cancel</a>
+                    {% endif %}
+                </form>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock content %}

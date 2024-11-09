@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="hero">
+<div class="container-fluid px-4">
+    <h1 class="mt-4">{{ author.name }}</h1>
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+        <li class="breadcrumb-item"><a href="{% url 'author_list' %}">Authors</a></li>
+        <li class="breadcrumb-item active">{{ author.name }}</li>
+    </ol>
+    <div class="card mb-4">
+        <div class="card-body">
+            <img src="{{ author.image.url }}" alt="{{ author.name }}" class="img-fluid mb-3" style="max-width: 200px;">
+            <p><strong>Bio:</strong> {{ author.bio }}</p>
+            <p><strong>Date of Birth:</strong> {{ author.date_of_birth }}</p>
+            <p><strong>Country:</strong> {{ author.get_country_display }}</p>
+            {% if user.user_type == 'LIB' or user.user_type == 'ADM' %}
+            <a href="{% url 'edit_author' author.id %}" class="btn btn-sm btn-warning">Edit</a>
+            <a href="{% url 'delete_author' author.id %}" class="btn btn-sm btn-danger">Delete</a>
+             {% endif %}
+            <a href="{% url 'author_list' %}" class="btn btn-secondary">Back to List</a>
+
+        </div>
+    </div>
+</div>
+</div>
+<style>
+/* Hero Section */
+.hero {
+    height: 100vh;
+    display: flex;
+   
+ 
+    background-image: url('/static/assets/img/dashboard-2li.jpg');
+    background-size: cover;
+}
+
+.hero .content h1 {
+    font-size: 4rem;
+    margin-bottom: 20px;
+    color: black;
+}
+
+.hero .content p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    max-width: 700px;
+}
+h1{ 
+    color: black;
+}
+</style>
+{% endblock content %}

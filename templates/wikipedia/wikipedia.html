@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div style="height: 200px;">
+
+</div>
+<div class ='hero'>
+<div class="container">
+    <section class="jumbotron text-center mt-4">
+        <div class="container">
+            <h1 class="jumbotron-heading">Search Wikipedia</h1>
+            <p class="lead text-muted">Get results from Wikipedia for your query!</p>
+            <a href="https://bn.wikipedia.org/wiki/%E0%A6%AE%E0%A7%8C%E0%A6%B2%E0%A6%AD%E0%A7%80%E0%A6%AC%E0%A6%BE%E0%A6%9C%E0%A6%BE%E0%A6%B0_%E0%A6%AA%E0%A6%B2%E0%A6%BF%E0%A6%9F%E0%A7%87%E0%A6%95%E0%A6%A8%E0%A6%BF%E0%A6%95_%E0%A6%87%E0%A6%A8%E0%A6%B8%E0%A7%8D%E0%A6%9F%E0%A6%BF%E0%A6%9F%E0%A6%BF%E0%A6%89%E0%A6%9F" class="btn btn-primary">MPI</a>
+            <form method="POST">
+                {% csrf_token %}
+                <div class="input-group mb-3">
+                    <input type="text" name="search" class="form-control" placeholder="Search Wikipedia..." aria-label="Wikipedia Search" required>
+                    <div class="input-group-append">
+                        <button type="submit" class="btn btn-primary">Search</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <div class="row py-5">
+        {% if results %}
+            {% for result in results %}
+                <div class="col-md-4">
+                    <div class="card mb-4 shadow-sm">
+                        <div class="card-body">
+                            <h2 class="card-title">{{ result.title }}</h2>
+                            <p class="card-text">{{ result.summary }}</p>
+                            {% if result.image %}
+                                <img src="{{ result.image }}" alt="Image for {{ result.title }}" class="img-fluid mb-2" style="max-width: 200px;">
+                            {% endif %}
+                            <div class="d-flex justify-content-between align-items-center">
+                                <a href="{{ result.url }}" class="btn btn-sm btn-outline-secondary" target="_blank">Read more</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p class="text-center">No results found. Try searching for something else!</p>
+        {% endif %}
+    </div>
+</div>
+</div>
+<style>
+    /* Hero Section */
+.hero {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background-image: url('/static/assets/img/dashboard-2li.jpg');
+    background-size: contain;
+}
+
+.hero .content h1 {
+    font-size: 4rem;
+    margin-bottom: 20px;
+    color: black;
+}
+
+.hero .content p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    max-width: 700px;
+}
+h1{ 
+    color: black;
+}
+p{ 
+    color: black;
+}
+a{ 
+    color: black;
+}
+</style>
+{% endblock content %}

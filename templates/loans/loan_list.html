@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <h2>Order List</h2>
+    {% if user.is_staff %}
+
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Book</th>
+                <th>Member</th>
+                <th>Loan Date</th>
+                <th>Return Date</th>
+                <th>Status</th>
+                <th>Fine</th>
+                <th> Payment Status</th>
+                <th>Payment</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for loan in loans %}
+    <tr>
+
+               <td>{{ loan.book.title }}</td>
+               <td>{{ loan.member.name }}</td>
+                <td>{{ loan.loan_date }}</td>
+                <td>{{ loan.return_date }}</td>
+                <td>{{ loan.status }}</td>
+                <td>${{ loan.fine }}</td>
+                <td>${{ loan.payment_method }}</td>
+               <td>
+                {% if loan.status == 'Borrowed' %}
+                <a href="" class="btn btn-warning">Return Book</a>
+                 {% elif loan.status == 'Returned' and not loan.payment_status %}
+                <a href="{% url 'pay_fine' loan.pk %}" class="btn btn-danger">Pay Fine</a> 
+
+                 {% endif %}
+                </td>
+               
+                <td>
+                    <a href="{% url 'loan_update' loan.pk %}" class="btn btn-primary">Edit</a>
+                    <a href="{% url 'loan_delete' loan.pk %}" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{% url 'loan_create' %}" class="btn btn-success">Add New Order</a>
+    <!-- {% else %}
+    <p>You do not have permission to view this page.</p>
+    {% endif %} -->
+</div>
+{% endblock %}

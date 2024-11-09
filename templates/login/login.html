@@ -1,0 +1,254 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-light">
+    <div class="mpi">
+        <h1>Moulovibazar Polytechnic Institute Library</h1>
+        <!-- Particles -->
+        <div class="particle" style="top: 80%; left: 20%; animation-duration: 4s;"></div>
+        <div class="particle" style="top: 85%; left: 50%; animation-duration: 6s;"></div>
+        <div class="particle" style="top: 90%; left: 70%; animation-duration: 5.5s;"></div>
+        <div class="particle" style="top: 70%; left: 40%; animation-duration: 7s;"></div>
+    </div>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-5">
+                <div class="card shadow-lg border-0 rounded-lg mt-5">
+                    <div class="card-header">
+                        <h3 class="text-center font-weight-light my-4">Login</h3>
+                    </div>
+                    <div class="card-body">
+                        <form method="POST" action="">
+                            {% csrf_token %}
+                            <div class="form-group mb-3">
+                                <label for="email">Email</label>
+                                <input type="email" class="form-control" id="email" name="email" placeholder="Email" required>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="password">Password</label>
+                                <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
+                            </div>
+                            <div class="form-group d-flex justify-content-between align-items-center">
+                                <a class="small" href="{% url 'password_reset_request' %}">Forgot Password?</a>
+                                <button type="submit" class="btn btn-primary">Login</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="card-footer text-center py-3">
+                        <div class="small">
+                            <a href="{% url 'register' %}">Need an account? Sign up!</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="particle" style="top: 80%; left: 20%; animation-duration: 4s;"></div>
+        <div class="particle" style="top: 85%; right: 50%; animation-duration: 6s;"></div>
+        <div class="particle" style="top: 90%; left: 70%; animation-duration: 5.5s;"></div>
+        <div class="particle" style="bottom: 75%; left: 40%; animation-duration: 10s;"></div>
+        <div class="particle" style="top: 72%; right: 30%; animation-duration: 15s;"></div>
+        <div class="particle" style="top: 65%; left: 40%; animation-duration: 20s;"></div>
+        <div class="particle" style="top: 60%; right: 25%; animation-duration: 25s;"></div>
+        <div class="particle" style="top: 55%; left: 40%; animation-duration: 3s;"></div>
+        <div class="particle" style="bottom: 50%; left: 30%; animation-duration: 5s;"></div>
+        <div class="particle" style="bottom: 45%; left: 40%; animation-duration: 3s;"></div>
+        <div class="particle" style="top: 40%; left: 20%; animation-duration: 7s;"></div>
+        <div class="particle" style="bottom: 35%; left: 80%; animation-duration: 7s;"></div>
+    </div>
+</body>
+
+</html>
+
+
+<style>
+    /* Global Styles */
+body, html {
+    height: 100%;
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #3498db, #8e44ad);
+}
+
+/* Background Gradient */
+.bg-gradient-primary {
+    background: linear-gradient(90deg, rgba(58,123,213,1) 0%, rgba(0,210,255,1) 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+/* Card Styles */
+.card {
+    background: #ffffff7e;
+    border-radius: 30px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2); /* Box Shadow */
+    border: none;
+    padding: 20px;
+}
+
+/* Form Elements */
+.form-control {
+    border-radius: 10px;
+    padding: 15px;
+    font-size: 16px;
+    background-color: #f8f9fa;
+    border: 1px solid #ced4da;
+}
+
+.form-floating {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.form-floating label {
+    position: absolute;
+    top: 50%;
+    left: 15px;
+    transform: translateY(-50%);
+    color: #6c757d;
+    font-size: 16px;
+    transition: all 0.2s ease-in-out;
+}
+
+.form-floating input:focus + label,
+.form-floating input:not(:placeholder-shown) + label {
+    top: 0;
+    left: 10px;
+    font-size: 12px;
+    color: #0d6efd;
+}
+
+/* Button Styles */
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 10px;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #004085;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Button Hover Shadow */
+}
+
+/* Centering Elements */
+#layoutAuthentication {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+#layoutAuthentication_content {
+    width: 100%;
+    max-width: 450px;
+}
+
+.card-header h3 {
+    font-weight: bold;
+    color: #333;
+}
+
+/* Footer Links */
+.card-footer .small a {
+    color: #007bff;
+}
+
+.card-footer .small a:hover {
+    text-decoration: underline;
+    color: #0056b3;
+}
+
+.mpi {
+            background: linear-gradient(135deg, #3498db, #8e44ad);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            overflow: hidden;
+            position: relative;
+        }
+        .mpi {
+            background: linear-gradient(135deg, #3498db, #8e44ad);
+            padding: 20px 50px;
+            border-radius: 10px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0px 4px 30px rgba(0, 0, 0, 0.4);
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        /* Heading Styling */
+        .mpi h1 {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #fff;
+            text-shadow: 2px 4px 10px rgba(0, 0, 0, 0.7);
+            position: relative;
+            overflow: hidden;
+            white-space: nowrap;
+            display: inline-block;
+            animation: marquee 10s linear infinite;
+            padding: 10px;
+        }
+
+        /* Marquee Animation */
+        @keyframes marquee {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+
+        /* Fade-In Animation */
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: scale(0.95); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        /* Particle Effect */
+        .particle {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background-color: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            animation: float 5s infinite ease-in-out;
+        }
+
+        /* Floating Particle Animation */
+        @keyframes float {
+            0% { transform: translateY(0); opacity: 0.8; }
+            50% { opacity: 0.5; }
+            100% { transform: translateY(-150px); opacity: 0; }
+        }
+</style>
+<script>
+    // JavaScript to create floating particles dynamically
+    function createParticles() {
+        const container = document.querySelector('.mpi');
+        for (let i = 0; i < 5; i++) {
+            let particle = document.createElement('div');
+            particle.classList.add('particle');
+            particle.style.top = `${80 + Math.random() * 10}%`;
+            particle.style.left = `${Math.random() * 100}%`;
+            particle.style.animationDuration = `${4 + Math.random() * 4}s`;
+            container.appendChild(particle);
+        }
+    }
+
+    createParticles();
+</script>
