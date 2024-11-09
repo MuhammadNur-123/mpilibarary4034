@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-nk!9^7c@!cth+3xmpy)&%_wlx-(vj_8m#d47(a#4z(cn^7i+yq'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['127.0.0.1', 'www.mpilibrary.com', 'mpilibary.com','mpil.com']
 
@@ -91,16 +91,16 @@ DATABASES = {
 }
 
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.mysql',
-#         'NAME': 'mpilibrary$mpilibrary',
-#         'USER': 'mpilibrary',
-#         'PASSWORD': '12345678mpi',
-#         'HOST': 'mpilibrary.mysql.pythonanywhere-services.com',
-#         'PORT': '3306',
-#     }
-# }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'mpilibrary$mpilibrary',
+        'USER': 'mpilibrary',
+        'PASSWORD': '12345678mpi',
+        'HOST': 'mpilibrary.mysql.pythonanywhere-services.com',
+        'PORT': '3306',
+    }
+}
 
 
 # Password validation
